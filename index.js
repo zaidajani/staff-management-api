@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes/index');
+const port = 3000;
 const app = express();
 
 mongoose
@@ -15,3 +17,9 @@ mongoose
     console.log("err: ", + err);
   });
 
+app.use('/', routes);
+app.use(express.json());
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});

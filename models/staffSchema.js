@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 
-const staffShema = new mongoose.Schema({
+const staffSchema = new mongoose.Schema({
   GenId: {
     type: String,
     required: true
@@ -15,7 +15,7 @@ const staffShema = new mongoose.Schema({
     required: true
   },
   DateOfJoining: {
-    type: new Date,
+    type: String,
     required: true
   },
 });
@@ -31,5 +31,8 @@ function validateStaffShema(staff) {
   return Joi.validate(staff, schema);
 }
 
-exports.Schema = staffShema;
+const StaffDb = mongoose.model('staffs', staffSchema);
+
+exports.StaffDb = StaffDb;
+exports.schema = staffSchema;
 exports.validateStaffShema = validateStaffShema;
