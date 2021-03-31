@@ -26,17 +26,7 @@ router.get('/staffs', async (req, res) => {
 });
 
 router.post('/staffs/add/', async (req, res) => {
-  const pass = req.body.pass;
-
-  const staff = new StaffDb({
-    GenId: Date.now(),
-    Address: req.body.address,
-    Name: req.body.name,
-    DateOfJoining: new Date().toLocaleDateString()
-  });
-  await staff.save();
-
-  res.send(staff);
+  // work will be done
 });
 
 
