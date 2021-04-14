@@ -26,8 +26,34 @@ router.get('/staffs', async (req, res) => {
 });
 
 router.post('/staffs/add/', async (req, res) => {
-  // work will be done
+  try {
+    if (req.body.uname == "zaid" && req.body.pass == 123) {
+      const staff = await newStaff(
+        Date.now(),
+        req.body.address, 
+        req.body.name, 
+        Date.now().toLocaleString()
+      );
+      res.send(staff);
+    }
+    else {
+      res.send('invallid uname or pass');
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
 });
 
+router.delete('/staff/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const toDelete = await StaffDb.findOneAndDelete({ GenId: id });
+    res.send(toDelete);
+  }
+  catch (err) {
+    res.send('invallid ID');
+  }
+});
 
 module.exports = router;
