@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 const { StaffDb } = require('../models/staffSchema');
 
 router.use(express.json());
+router.use(cors());
 
 async function newStaff(genId, Address, Name, DateOfJoining) {
   const staff = new StaffDb({
